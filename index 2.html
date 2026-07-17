@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booty Burgers – Mobile Catering Experts</title>
+  <meta name="description" content="Booty Burgers – proper grub at car boots and events across Essex and Suffolk. Available for private hire, weddings, and events."/>
+  <meta property="og:title" content="Booty Burgers – Mobile Catering Experts"/>
+  <meta property="og:description" content="Proper grub at car boots across Essex and Suffolk. Available for private hire."/>
+  <meta property="og:url" content="https://www.bootyburgers.co.uk"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:     #CC1E1E;
+      --red-d:   #A01515;
+      --red-l:   #F5E5E5;
+      --ink:     #1a1a1a;
+      --white:   #ffffff;
+      --off:     #F7F7F5;
+      --muted:   #666;
+      --border:  #E0E0E0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta {
+      background: var(--red);
+      color: var(--white) !important;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+      opacity: 1 !important;
+    }
+    .nav-cta:hover { background: var(--red-d); color: var(--white) !important; }
+
+    /* HERO */
+    .hero {
+      background: var(--ink);
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(204,30,30,0.15) 0%, transparent 70%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 800px; }
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 14vw, 9rem);
+      line-height: 0.9;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.3rem;
+    }
+    .hero h1 .red { color: var(--red); }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.55);
+      margin: 1.5rem auto 2.5rem;
+      max-width: 480px;
+      line-height: 1.65;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-d); transform: translateY(-2px); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.1s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--red); transform: translateY(-2px); }
+
+    /* FOOD PHOTO STRIP */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      height: 320px;
+      overflow: hidden;
+    }
+    .photo-strip .photo {
+      overflow: hidden;
+      position: relative;
+    }
+    .photo-strip .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .photo-strip .photo:hover img { transform: scale(1.05); }
+    .photo-strip .photo-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 1.5rem 1rem 0.8rem;
+    }
+
+    /* SECTION STYLES */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 1.2rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.65;
+      max-width: 540px;
+    }
+
+    /* ABOUT */
+    .about { background: var(--off); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+    .stat {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.2rem;
+      border: 1.5px solid var(--border);
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      color: var(--red);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 0.2rem;
+    }
+    .about-img {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* WHERE TO FIND US */
+    .locations { background: var(--ink); }
+    .locations .section-title { color: var(--white); }
+    .locations .section-label { color: var(--red); }
+    .locations .section-sub { color: rgba(255,255,255,0.5); }
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .location-card {
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .location-card:hover {
+      border-color: var(--red);
+      background: rgba(204,30,30,0.08);
+    }
+    .location-day {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--red);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+    .location-name {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+    .location-detail {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+    .location-season {
+      display: inline-block;
+      margin-top: 0.8rem;
+      background: rgba(204,30,30,0.2);
+      color: var(--red);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+    }
+
+    /* MENU */
+    .menu { background: var(--white); }
+    .menu-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .menu-category {
+      background: var(--off);
+      border-radius: 16px;
+      padding: 1.8rem;
+      border: 1.5px solid var(--border);
+    }
+    .menu-cat-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      color: var(--red);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-item-name {
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1.4;
+      flex: 1;
+    }
+    .menu-item-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+    .menu-item-price {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--red);
+      white-space: nowrap;
+    }
+    .menu-note {
+      margin-top: 2rem;
+      background: var(--red-l);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      font-size: 0.85rem;
+      color: var(--red-d);
+      font-weight: 500;
+    }
+
+    /* PRIVATE HIRE */
+    .hire { background: var(--red); }
+    .hire .section-title { color: var(--white); }
+    .hire .section-label { color: rgba(255,255,255,0.6); }
+    .hire .section-sub { color: rgba(255,255,255,0.75); }
+    .hire-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+    .hire-feat {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1.3rem;
+      border: 1.5px solid rgba(255,255,255,0.15);
+    }
+    .hire-feat-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+    .hire-feat-title {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+    .hire-feat-desc {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+    .hire-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--red);
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.1s;
+      display: inline-block;
+    }
+    .btn-white:hover { transform: translateY(-2px); }
+
+    /* ENQUIRY FORM */
+    .enquiry { background: var(--off); }
+    .enquiry-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      background: var(--white);
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--red); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      padding: 0.95rem 2rem;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .form-submit:hover { background: var(--red-d); transform: translateY(-1px); }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--red);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .contact-item-title {
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 0.2rem;
+    }
+    .contact-item-value {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .contact-item-value a {
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .socials {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+    .social-btn {
+      background: var(--ink);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .social-btn:hover { background: var(--red); }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      padding: 2rem;
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.8rem;
+    }
+    footer span { color: var(--red); }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+      .photo-strip { grid-template-columns: 1fr; height: auto; }
+      .photo-strip .photo { height: 220px; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-img { order: -1; }
+      .enquiry-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Booty<span>Burgers</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#locations">Find Us</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#hire">Private Hire</a></li>
+    <li><a href="#enquiry" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">🍔 Mobile Catering Experts · Est. 2021</div>
+    <h1>Booty<br/><span class="red">Burgers</span></h1>
+    <p class="hero-sub">Proper grub at car boots, events and private hire across Essex and Suffolk. At your service since 2021.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">See the Menu</a>
+      <a href="#enquiry" class="btn-outline">Book Private Hire</a>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<div class="photo-strip">
+  <div class="photo">
+    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" alt="Burger"/>
+    <div class="photo-label">Burgers</div>
+  </div>
+  <div class="photo">
+    <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800&q=80" alt="Breakfast"/>
+    <div class="photo-label">Breakfast Baps</div>
+  </div>
+  <div class="photo">
+    <img src="https://images.unsplash.com/photo-1612392062631-94b2e6b93d34?w=800&q=80" alt="Hot Dogs"/>
+    <div class="photo-label">Hot Dogs</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="section-label">Who We Are</div>
+    <h2 class="section-title">At Your Service</h2>
+    <p class="section-sub">Family-run mobile catering van serving proper, no-fuss food at car boots and events across Essex and Suffolk. Quick service, generous portions, great prices.</p>
+    <div class="about-grid">
+      <div>
+        <p style="color:var(--muted);line-height:1.7;font-size:0.95rem;">Started in 2021, Booty Burgers has become a firm favourite across the region's car boot circuit. From our fully-equipped professional van we serve everything from classic burgers and hot dogs to full breakfast baps — all freshly made to order.</p>
+        <p style="color:var(--muted);line-height:1.7;font-size:0.95rem;margin-top:1rem;">Available for private hire at weddings, birthday parties, corporate events, pub functions and more. We bring the van, the food, and the good vibes.</p>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-num">4+</div>
+            <div class="stat-label">Trading locations</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2021</div>
+            <div class="stat-label">Established</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">100s</div>
+            <div class="stat-label">Happy customers weekly</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">✓</div>
+            <div class="stat-label">Vegan options available</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800&q=80" alt="Booty Burgers Van"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="locations" id="locations">
+  <div class="section-inner">
+    <div class="section-label">Where to Find Us</div>
+    <h2 class="section-title" style="color:white">Come Find Us</h2>
+    <p class="section-sub">We trade at regular spots across Essex and Suffolk — come say hello!</p>
+    <div class="locations-grid">
+      <div class="location-card">
+        <div class="location-day">Wednesday</div>
+        <div class="location-name">Marks Tey Car Boot</div>
+        <div class="location-detail">From 5:30am · Home by early afternoon</div>
+        <div class="location-season">March – November</div>
+      </div>
+      <div class="location-card">
+        <div class="location-day">Friday</div>
+        <div class="location-name">MKM Builders Merchants</div>
+        <div class="location-detail">Ipswich · From 6am – 1:30pm</div>
+        <div class="location-season">Year Round</div>
+      </div>
+      <div class="location-card">
+        <div class="location-day">Saturday</div>
+        <div class="location-name">Weeley Car Boot</div>
+        <div class="location-detail">From 5am · Home by 1pm</div>
+        <div class="location-season">March – November</div>
+      </div>
+      <div class="location-card">
+        <div class="location-day">Sunday</div>
+        <div class="location-name">Colchester Park & Ride</div>
+        <div class="location-detail">From 5am · Home by 1pm · Our busiest!</div>
+        <div class="location-season">March – November</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="section-inner">
+    <div class="section-label">What We Serve</div>
+    <h2 class="section-title">The Menu</h2>
+    <p class="section-sub">Freshly made to order. No fuss, just proper food at proper prices.</p>
+
+    <div class="menu-categories">
+
+      <!-- BURGERS -->
+      <div class="menu-category">
+        <div class="menu-cat-title">🍔 Burgers</div>
+        <div class="menu-item"><div><div class="menu-item-name">Quarter Pounder</div></div><div class="menu-item-price">£4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Half Pounder</div></div><div class="menu-item-price">£5.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Quarter Pounder with Bacon</div></div><div class="menu-item-price">£5.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Half Pounder with Bacon</div></div><div class="menu-item-price">£6.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Quarter Pounder with Egg</div></div><div class="menu-item-price">£5.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Mega Burger</div><div class="menu-item-desc">Two quarter pound patties, two bacon rashers, cheese, mushroom, onions</div></div><div class="menu-item-price">£7.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Ultimate Burger</div><div class="menu-item-desc">Three quarter pound patties, three bacon rashers, egg, cheese, mushrooms, onions</div></div><div class="menu-item-price">£10.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Add cheese, mushrooms, crispy onions or jalapeños</div></div><div class="menu-item-price">£0.50</div></div>
+      </div>
+
+      <!-- BAGUETTES & BAPS -->
+      <div class="menu-category">
+        <div class="menu-cat-title">🥖 Baguettes & Baps</div>
+        <div class="menu-item"><div><div class="menu-item-name">Bacon or Sausage</div></div><div class="menu-item-price">£4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Bacon & Sausage</div></div><div class="menu-item-price">£5.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Bacon or Sausage with Egg</div></div><div class="menu-item-price">£5.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Bacon, Sausage & Egg</div></div><div class="menu-item-price">£6.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Full Monty</div><div class="menu-item-desc">Sausage, bacon, egg, cheese, mushrooms & onions</div></div><div class="menu-item-price">£7.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Double Egg</div></div><div class="menu-item-price">£3.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Cheese, Mushroom & Onion</div></div><div class="menu-item-price">£2.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Add cheese or mushrooms to any bap or baguette</div></div><div class="menu-item-price">£0.50</div></div>
+      </div>
+
+      <!-- HOTDOGS & SIDES -->
+      <div class="menu-category">
+        <div class="menu-cat-title">🌭 Hotdogs, Sandwiches & Sides</div>
+        <div class="menu-item"><div><div class="menu-item-name">Hot Dog</div></div><div class="menu-item-price">£4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Bacon or Sausage Sandwich</div></div><div class="menu-item-price">£3.80</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Fries</div></div><div class="menu-item-price">£3.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Hash Brown Bites</div></div><div class="menu-item-price">£3.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Add Chips/Hash Brown Bites & Drink to any main</div></div><div class="menu-item-price">£3.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Individual Sausage, Bacon Portion or Burger</div></div><div class="menu-item-price">£2.00</div></div>
+      </div>
+
+      <!-- DRINKS -->
+      <div class="menu-category">
+        <div class="menu-cat-title">☕ Hot & Cold Drinks & Snacks</div>
+        <div class="menu-item"><div><div class="menu-item-name">Tea or Coffee</div></div><div class="menu-item-price">£1.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Latte or Cappuccino</div></div><div class="menu-item-price">£2.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Hot Chocolate</div><div class="menu-item-desc">Add cream & marshmallows +£1.00</div></div><div class="menu-item-price">£2.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Cup-a-Soup</div></div><div class="menu-item-price">£1.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Cans</div></div><div class="menu-item-price">£1.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Kids Simply Fruit</div></div><div class="menu-item-price">£1.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Red Bull</div></div><div class="menu-item-price">£2.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Oasis</div></div><div class="menu-item-price">£2.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Biscoff Biscuits</div></div><div class="menu-item-price">£1.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Water</div></div><div class="menu-item-price">£1.50</div></div>
+      </div>
+
+    </div>
+    <div class="menu-note">🌱 Vegan options available on request — just ask! We can tailor most items to suit dietary requirements.</div>
+  </div>
+</section>
+
+<!-- PRIVATE HIRE -->
+<section class="hire" id="hire">
+  <div class="section-inner">
+    <div class="section-label">Book The Van</div>
+    <h2 class="section-title">Private Hire</h2>
+    <p class="section-sub">Bring Booty Burgers to your event. We've catered weddings, birthday parties, corporate events, pub functions and charity events — get in touch for a tailored quote.</p>
+    <div class="hire-features">
+      <div class="hire-feat">
+        <div class="hire-feat-icon">💍</div>
+        <div class="hire-feat-title">Weddings</div>
+        <div class="hire-feat-desc">Evening food, canapé style service or full meal. Bespoke menus available.</div>
+      </div>
+      <div class="hire-feat">
+        <div class="hire-feat-icon">🎉</div>
+        <div class="hire-feat-title">Parties & Events</div>
+        <div class="hire-feat-desc">Birthdays, garden parties, festivals. We come to you.</div>
+      </div>
+      <div class="hire-feat">
+        <div class="hire-feat-icon">🏢</div>
+        <div class="hire-feat-title">Corporate</div>
+        <div class="hire-feat-desc">Staff events, team days, outdoor functions. Quick, reliable service.</div>
+      </div>
+      <div class="hire-feat">
+        <div class="hire-feat-icon">🍺</div>
+        <div class="hire-feat-title">Pub Functions</div>
+        <div class="hire-feat-desc">Match days, quiz nights, bank holiday events. We fit right in.</div>
+      </div>
+    </div>
+    <div class="hire-cta">
+      <a href="#enquiry" class="btn-white">Get a Quote</a>
+      <a href="tel:07347388336" class="btn-outline" style="border-color:rgba(255,255,255,0.3);color:white">📞 Call Us Direct</a>
+    </div>
+  </div>
+</section>
+
+<!-- ENQUIRY -->
+<section class="enquiry" id="enquiry">
+  <div class="section-inner">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Make an Enquiry</h2>
+    <div class="enquiry-grid">
+      <div>
+        <form action="mailto:bootyburgers21@gmail.com" method="get" enctype="text/plain">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="John Smith" required/>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="john@example.com" required/>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="07700 000000"/>
+          </div>
+          <div class="form-group">
+            <label>Type of Event</label>
+            <select name="event-type">
+              <option value="">Select event type...</option>
+              <option>Wedding</option>
+              <option>Birthday Party</option>
+              <option>Corporate Event</option>
+              <option>Pub Function</option>
+              <option>Festival or Fete</option>
+              <option>Charity Event</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Event Date</label>
+            <input type="date" name="date"/>
+          </div>
+          <div class="form-group">
+            <label>Number of Guests</label>
+            <input type="text" name="guests" placeholder="e.g. 80"/>
+          </div>
+          <div class="form-group">
+            <label>Tell Us More</label>
+            <textarea name="message" placeholder="Any extra details, dietary requirements, location etc..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Enquiry 🍔</button>
+        </form>
+      </div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-item-title">Phone</div>
+            <div class="contact-item-value"><a href="tel:07347388336">07347 388336</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-item-title">Email</div>
+            <div class="contact-item-value"><a href="mailto:bootyburgers21@gmail.com">bootyburgers21@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-title">Based In</div>
+            <div class="contact-item-value">Ipswich, Suffolk — serving Essex & Suffolk</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-item-title">Follow Us</div>
+            <div class="socials">
+              <a href="https://facebook.com/BootyBurgers" target="_blank" class="social-btn">Facebook</a>
+              <a href="https://instagram.com/BootyBurgers_" target="_blank" class="social-btn">Instagram</a>
+              <a href="https://tiktok.com/@BootyBurgers_" target="_blank" class="social-btn">TikTok</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Booty Burgers</span> · Mobile Catering Experts · Est. 2021 · Ipswich, Suffolk 🇬🇧</p>
+</footer>
+
+</body>
+</html>
